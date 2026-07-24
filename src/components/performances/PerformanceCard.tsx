@@ -23,7 +23,7 @@ export function PerformanceCard({ performance, status }: Props) {
           src={performance.poster}
           alt={`Poster or photo for ${performance.title} at ${performance.venue}`}
           label={`Performance Poster — ${performance.id}`}
-          aspectClassName="aspect-[16/10]"
+          aspectClassName="aspect-[3/4]"
           rounded="rounded-none"
           className="transition-transform duration-700 group-hover:scale-105"
         />

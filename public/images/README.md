@@ -46,10 +46,12 @@ Member names/roles/photos live in `src/data/members.ts`.
 
 | Filename | Used on | Suggested size / aspect |
 | --- | --- | --- |
-| `performance-1.jpg` … `performance-5.jpg` | Performance cards (poster or event photo) | Landscape, ~16:10 |
+| `botb-2026.jpg` | Battle of the Bands 2026 performance card | Portrait poster, ~3:4 |
 
 Filenames are whatever you set in the `poster` field of each entry in
 `src/data/performances.ts` — add more files there as you add shows.
+Performance cards are sized for portrait event-poster flyers (~3:4);
+a landscape photo will still work fine, just cropped a bit more.
 
 ## `gallery/`
 

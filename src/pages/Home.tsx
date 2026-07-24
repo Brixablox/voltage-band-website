@@ -151,7 +151,7 @@ export default function Home() {
           </div>
 
           {previewShows.length > 0 ? (
-            <div className="grid gap-6 sm:grid-cols-2">
+            <div className={`grid gap-6 ${previewShows.length > 1 ? 'sm:grid-cols-2' : 'max-w-md'}`}>
               {previewShows.map((p, i) => (
                 <Reveal key={p.id} index={i}>
                   <PerformanceCard performance={p} status="upcoming" />

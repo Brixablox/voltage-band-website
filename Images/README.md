@@ -15,3 +15,4 @@ deleted), so this folder will keep growing — that's expected.
 | File | Integrated as | Date |
 | --- | --- | --- |
 | `hero-brand.jpeg` | Homepage hero (`public/images/hero/hero-band-photo.jpg`) + About page group photo (`public/images/band/band-group-photo.jpg`) — a live performance shot showing the full six-piece lineup, resized/compressed for web. | 2026-07-23 |
+| `Botb2026.jpg` | Performances page (`public/images/performances/botb-2026.jpg`) — official event poster for the 2026 SoFi Battle of the Bands, used on the "SoFi Battle of the Bands 2026" performance card (`src/data/performances.ts`). Resized/compressed for web. | 2026-07-24 |
