@@ -1,20 +1,23 @@
 import { useMemo, useState } from 'react'
-import { galleryImages, type GalleryImage } from '../data/gallery'
+import { galleryImages, galleryCategories, type GalleryCategory } from '../data/gallery'
 import { Reveal } from '../components/ui/Reveal'
 import { GalleryGrid } from '../components/gallery/GalleryGrid'
 import { Lightbox } from '../components/gallery/Lightbox'
 
-const filters: { label: string; value: GalleryImage['category'] | 'all' }[] = [
-  { label: 'All', value: 'all' },
-  { label: 'Performance', value: 'performance' },
-  { label: 'Behind the Scenes', value: 'behind-the-scenes' },
-  { label: 'Band', value: 'band' },
-  { label: 'Promo', value: 'promo' },
-]
+type FilterValue = GalleryCategory | 'all'
 
 export default function Gallery() {
-  const [active, setActive] = useState<(typeof filters)[number]['value']>('all')
+  const [active, setActive] = useState<FilterValue>('all')
   const [openIndex, setOpenIndex] = useState<number | null>(null)
+
+  // Only show filter buttons for categories that actually have photos yet.
+  const filters = useMemo(() => {
+    const present = new Set(galleryImages.map((img) => img.category))
+    return [
+      { label: 'All', value: 'all' as FilterValue },
+      ...galleryCategories.filter((c) => present.has(c.value)).map((c) => ({ label: c.label, value: c.value as FilterValue })),
+    ]
+  }, [])
 
   const filtered = useMemo(
     () => (active === 'all' ? galleryImages : galleryImages.filter((img) => img.category === active)),

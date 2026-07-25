@@ -2,6 +2,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { NavLink } from 'react-router-dom'
 import { navLinks, site } from '../../data/site'
 import { InstagramIcon } from '../ui/InstagramIcon'
+import { YouTubeIcon } from '../ui/YouTubeIcon'
 
 type Props = {
   open: boolean
@@ -48,17 +49,30 @@ export function MobileMenu({ open, onClose }: Props) {
               </motion.div>
             ))}
           </nav>
-          <a
-            href={site.instagramUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Voltage on Instagram (opens in a new tab): ${site.instagramHandle}`}
-            onClick={onClose}
-            className="glow-volt mt-8 inline-flex items-center gap-3 rounded-full bg-volt px-6 py-3.5 font-bold text-ink"
-          >
-            <InstagramIcon />
-            Follow on Instagram
-          </a>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a
+              href={site.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Voltage on Instagram (opens in a new tab): ${site.instagramHandle}`}
+              onClick={onClose}
+              className="glow-volt inline-flex items-center gap-3 rounded-full bg-volt px-6 py-3.5 font-bold text-ink"
+            >
+              <InstagramIcon />
+              Instagram
+            </a>
+            <a
+              href={site.youtubeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Voltage on YouTube (opens in a new tab)"
+              onClick={onClose}
+              className="inline-flex items-center gap-3 rounded-full border border-white/15 px-6 py-3.5 font-bold text-paper transition-colors hover:border-volt hover:text-volt"
+            >
+              <YouTubeIcon />
+              YouTube
+            </a>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

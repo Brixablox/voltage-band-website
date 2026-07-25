@@ -11,6 +11,8 @@ type Props = {
   /** Load eagerly for above-the-fold images (hero). Defaults to lazy. */
   priority?: boolean
   rounded?: string
+  /** CSS object-position, for recentering the crop on a specific photo. Defaults to 'center'. */
+  objectPosition?: string
 }
 
 const gradients = [
@@ -42,6 +44,7 @@ export function ImagePlaceholder({
   aspectClassName = 'aspect-[4/5]',
   priority = false,
   rounded = 'rounded-2xl',
+  objectPosition = 'center',
 }: Props) {
   const [failed, setFailed] = useState(false)
   const gradient = gradients[hashIndex(src, gradients.length)]
@@ -77,6 +80,7 @@ export function ImagePlaceholder({
       fetchPriority={priority ? 'high' : 'auto'}
       decoding="async"
       onError={() => setFailed(true)}
+      style={{ objectPosition }}
       className={`${aspectClassName} ${rounded} w-full border border-white/10 object-cover ${className}`}
     />
   )

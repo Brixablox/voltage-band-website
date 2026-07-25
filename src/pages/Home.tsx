@@ -5,15 +5,20 @@ import { site } from '../data/site'
 import { members } from '../data/members'
 import { galleryImages } from '../data/gallery'
 import { performances } from '../data/performances'
-import { splitPerformances } from '../lib/utils'
+import { heroSlides } from '../data/slideshow'
+import { splitPerformances, pastShowsToDisplay } from '../lib/utils'
 import { Button } from '../components/ui/Button'
 import { InstagramIcon } from '../components/ui/InstagramIcon'
+import { YouTubeIcon } from '../components/ui/YouTubeIcon'
 import { ImagePlaceholder } from '../components/ui/ImagePlaceholder'
+import { HeroSlideshow } from '../components/ui/HeroSlideshow'
 import { Reveal } from '../components/ui/Reveal'
 import { SectionHeading } from '../components/ui/SectionHeading'
 import { VoltageDivider } from '../components/ui/VoltageDivider'
 import { PerformanceCard } from '../components/performances/PerformanceCard'
 import { EmptyState } from '../components/performances/EmptyState'
+import { ElectricDivider } from '../components/home/ElectricDivider'
+import { PastShowsCollage } from '../components/home/PastShowsCollage'
 import logo from '../assets/logo/voltage-logo.png'
 
 export default function Home() {
@@ -22,8 +27,12 @@ export default function Home() {
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] })
   const parallaxY = useTransform(scrollYProgress, [0, 1], [0, shouldReduceMotion ? 0 : 120])
 
-  const { upcoming } = splitPerformances(performances)
-  const previewShows = upcoming.slice(0, 2)
+  // Homepage shows derive from the same performances data as /performances —
+  // no separate/conflicting copy. Upcoming shows always display in full;
+  // past shows are trimmed based on how many upcoming shows there are.
+  const { upcoming, past } = splitPerformances(performances)
+  const pastPreviewCount = pastShowsToDisplay(upcoming.length)
+  const pastPreview = past.slice(0, pastPreviewCount)
   const previewGallery = galleryImages.slice(0, 4)
 
   return (
@@ -38,7 +47,7 @@ export default function Home() {
           <div className="h-full w-full" style={{ background: 'radial-gradient(closest-side, #FFD400, transparent)' }} />
         </motion.div>
 
-        <div className="container-voltage relative grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
+        <div className="container-voltage relative grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
           <div className="flex flex-col items-start gap-6">
             <Reveal trigger="mount" variant="scale">
               <img src={logo} alt="Voltage" className="h-16 w-auto sm:h-20 md:h-24" />
@@ -56,31 +65,42 @@ export default function Home() {
               <p className="max-w-lg font-body text-lg text-paper-dim sm:text-xl">{site.tagline}</p>
             </Reveal>
 
-            <Reveal trigger="mount" index={3} className="flex flex-wrap items-center gap-4 pt-2">
-              <div className="flex flex-wrap items-center gap-4">
-                <Button to="/performances">See Our Performances</Button>
-                <Button href={site.instagramUrl} external variant="secondary" icon={<InstagramIcon size={18} />}>
+            <Reveal trigger="mount" index={3} className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap sm:items-center">
+              <Button to="/performances">See Our Performances</Button>
+              {/* Instagram + YouTube grouped as a pair, in that order, so they wrap together as a unit */}
+              <div className="flex flex-wrap items-center gap-3">
+                <Button
+                  href={site.instagramUrl}
+                  external
+                  variant="secondary"
+                  icon={<InstagramIcon size={16} />}
+                  className="!px-5 !py-2.5 !text-sm"
+                  aria-label={`Follow Voltage on Instagram (opens in a new tab): ${site.instagramHandle}`}
+                >
                   Follow on Instagram
+                </Button>
+                <Button
+                  href={site.youtubeUrl}
+                  external
+                  variant="secondary"
+                  icon={<YouTubeIcon size={16} />}
+                  className="!px-5 !py-2.5 !text-sm"
+                  aria-label="Watch Voltage on YouTube (opens in a new tab)"
+                >
+                  Watch on YouTube
                 </Button>
               </div>
             </Reveal>
           </div>
 
-          <Reveal trigger="mount" index={2} variant="scale" className="relative">
-            <div className="relative">
+          <Reveal trigger="mount" index={2} variant="scale" className="relative lg:h-full">
+            <div className="relative lg:h-full">
               <div className="absolute -inset-3 -z-10 rounded-[2rem] bg-gradient-to-br from-volt/20 via-transparent to-transparent blur-2xl" aria-hidden="true" />
-              <ImagePlaceholder
-                src="/images/hero/hero-band-photo.jpg"
-                alt="Voltage performing live on stage"
-                label="Hero Band Photo"
-                aspectClassName="aspect-[16/9]"
-                priority
-                className="max-h-[64svh] shadow-2xl"
+              <HeroSlideshow
+                slides={heroSlides}
+                aspectClassName="aspect-[4/5] sm:aspect-[16/9] lg:aspect-auto lg:h-full"
+                className="max-h-[64svh] shadow-2xl lg:h-full"
               />
-              <div className="absolute -bottom-5 -left-5 hidden rounded-2xl border border-white/10 bg-ink-card/95 px-5 py-4 backdrop-blur sm:block">
-                <p className="font-display text-2xl text-volt leading-none">LIVE</p>
-                <p className="mt-1 font-mono text-[10px] uppercase tracking-widest text-paper-dim">On stage now</p>
-              </div>
             </div>
           </Reveal>
         </div>
@@ -138,11 +158,11 @@ export default function Home() {
         <VoltageDivider />
       </div>
 
-      {/* ============================== PERFORMANCES PREVIEW ============================== */}
+      {/* ============================== SHOWS ============================== */}
       <section className="py-24 sm:py-32">
-        <div className="container-voltage flex flex-col gap-12">
+        <div className="container-voltage flex flex-col gap-10">
           <div className="flex flex-wrap items-end justify-between gap-6">
-            <SectionHeading eyebrow="Live Dates" title="Upcoming Shows" />
+            <SectionHeading eyebrow="Live Dates" title="Shows" />
             <Reveal index={1}>
               <Button to="/performances" variant="ghost">
                 All Performances
@@ -150,19 +170,56 @@ export default function Home() {
             </Reveal>
           </div>
 
-          {previewShows.length > 0 ? (
-            <div className={`grid gap-6 ${previewShows.length > 1 ? 'sm:grid-cols-2' : 'max-w-md'}`}>
-              {previewShows.map((p, i) => (
-                <Reveal key={p.id} index={i}>
-                  <PerformanceCard performance={p} status="upcoming" />
-                </Reveal>
-              ))}
+          {/*
+            Desktop: past (left, ~35%) — electric divider — upcoming (right, ~65%, dominant).
+            Mobile/tablet: upcoming first, horizontal divider, smaller past preview below.
+            `order-*` handles the reflow; `lg:grid-cols-[...]` only kicks in at lg+.
+          */}
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1.8fr)] lg:items-stretch lg:gap-6">
+            {/* PAST SHOWS */}
+            <div className="order-3 flex flex-col lg:order-1 lg:h-full">
+              {pastPreview.length > 0 && (
+                <>
+                  <Reveal variant="fade" className="mb-5 shrink-0">
+                    <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-paper-dim">
+                      {past.length} Past Show{past.length === 1 ? '' : 's'}
+                    </p>
+                  </Reveal>
+                  <div className="flex-1">
+                    <PastShowsCollage shows={pastPreview} />
+                  </div>
+                </>
+              )}
             </div>
-          ) : (
-            <Reveal>
-              <EmptyState />
-            </Reveal>
-          )}
+
+            {/* DIVIDER — vertical on desktop */}
+            <div className="order-2 hidden lg:block">
+              <ElectricDivider orientation="vertical" className="h-full" />
+            </div>
+            {/* DIVIDER — horizontal on mobile/tablet, only when there's a past preview to separate */}
+            {pastPreview.length > 0 && (
+              <div className="order-2 lg:hidden">
+                <ElectricDivider orientation="horizontal" className="py-2" />
+              </div>
+            )}
+
+            {/* UPCOMING SHOWS — dominant */}
+            <div className="order-1 lg:order-3">
+              {upcoming.length > 0 ? (
+                <div className={`grid gap-6 ${upcoming.length > 1 ? 'sm:grid-cols-2' : 'max-w-md'}`}>
+                  {upcoming.map((p, i) => (
+                    <Reveal key={p.id} index={i}>
+                      <PerformanceCard performance={p} status="upcoming" />
+                    </Reveal>
+                  ))}
+                </div>
+              ) : (
+                <Reveal>
+                  <EmptyState />
+                </Reveal>
+              )}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -205,13 +262,16 @@ export default function Home() {
           </Reveal>
           <Reveal index={1}>
             <p className="max-w-xl font-body text-base text-paper-dim sm:text-lg">
-              Follow Voltage on Instagram for tour announcements, behind-the-scenes content, and ticket drops.
+              Follow Voltage on Instagram and YouTube for tour announcements, behind-the-scenes content, and ticket drops.
             </p>
           </Reveal>
           <Reveal index={2} className="flex flex-wrap justify-center gap-4 pt-2">
             <div className="flex flex-wrap justify-center gap-4">
               <Button href={site.instagramUrl} external icon={<InstagramIcon size={18} />}>
                 @{site.instagramHandle.replace('@', '')}
+              </Button>
+              <Button href={site.youtubeUrl} external variant="secondary" icon={<YouTubeIcon size={18} />}>
+                YouTube
               </Button>
               <Button to="/performances" variant="secondary">
                 See Performances

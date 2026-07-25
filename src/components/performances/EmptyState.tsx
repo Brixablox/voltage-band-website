@@ -1,4 +1,5 @@
 import { InstagramIcon } from '../ui/InstagramIcon'
+import { YouTubeIcon } from '../ui/YouTubeIcon'
 import { Button } from '../ui/Button'
 import { site } from '../../data/site'
 
@@ -20,11 +21,16 @@ export function EmptyState() {
       <h3 className="font-display text-2xl sm:text-3xl">No Shows Booked — Yet</h3>
       <p className="max-w-md font-body text-sm text-paper-dim sm:text-base">
         Voltage is off stage for the moment, but new dates are always in the works. Follow along on
-        Instagram to be first to know when tickets drop.
+        Instagram and YouTube to be first to know when tickets drop.
       </p>
-      <Button href={site.instagramUrl} external icon={<InstagramIcon size={18} />}>
-        Follow for Updates
-      </Button>
+      <div className="flex flex-wrap justify-center gap-3">
+        <Button href={site.instagramUrl} external icon={<InstagramIcon size={18} />}>
+          Follow for Updates
+        </Button>
+        <Button href={site.youtubeUrl} external variant="secondary" icon={<YouTubeIcon size={18} />}>
+          YouTube
+        </Button>
+      </div>
     </div>
   )
 }

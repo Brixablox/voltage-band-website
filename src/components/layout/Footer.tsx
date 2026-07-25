@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { navLinks, site } from '../../data/site'
 import { InstagramIcon } from '../ui/InstagramIcon'
+import { YouTubeIcon } from '../ui/YouTubeIcon'
 import logo from '../../assets/logo/voltage-logo.png'
 
 export function Footer() {
@@ -18,16 +19,28 @@ export function Footer() {
             <img src={logo} alt="Voltage" className="h-10 w-auto" />
           </Link>
           <p className="max-w-xs font-body text-sm leading-relaxed text-paper-dim">{site.tagline}</p>
-          <a
-            href={site.instagramUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Voltage on Instagram (opens in a new tab): ${site.instagramHandle}`}
-            className="glow-volt mt-2 inline-flex w-fit items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm font-semibold transition-colors hover:border-volt hover:text-volt"
-          >
-            <InstagramIcon size={18} />
-            {site.instagramHandle}
-          </a>
+          <div className="mt-2 flex flex-wrap gap-3">
+            <a
+              href={site.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Voltage on Instagram (opens in a new tab): ${site.instagramHandle}`}
+              className="glow-volt inline-flex w-fit items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm font-semibold transition-colors hover:border-volt hover:text-volt"
+            >
+              <InstagramIcon size={18} />
+              {site.instagramHandle}
+            </a>
+            <a
+              href={site.youtubeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Voltage on YouTube (opens in a new tab)"
+              className="glow-volt inline-flex w-fit items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm font-semibold transition-colors hover:border-volt hover:text-volt"
+            >
+              <YouTubeIcon size={18} />
+              YouTube
+            </a>
+          </div>
         </div>
 
         <nav aria-label="Footer" className="flex flex-col gap-3">

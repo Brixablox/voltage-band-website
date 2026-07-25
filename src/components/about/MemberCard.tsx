@@ -39,8 +39,8 @@ export function MemberCard({ member, index }: Props) {
             <h3 className="font-display text-2xl tracking-wide">{member.name}</h3>
           </div>
 
-          {/* EDITABLE placeholder — set bio in src/data/members.ts */}
-          <p className="font-body text-sm leading-relaxed text-paper-dim">{member.bio}</p>
+          {/* EDITABLE — set bio in src/data/members.ts. Left blank on purpose for members without a bio yet. */}
+          {member.bio && <p className="font-body text-sm leading-relaxed text-paper-dim">{member.bio}</p>}
 
           {member.quote && (
             <p className="font-body text-sm italic leading-relaxed text-paper-dim/90">&ldquo;{member.quote}&rdquo;</p>

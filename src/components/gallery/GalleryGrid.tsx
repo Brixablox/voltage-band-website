@@ -1,6 +1,8 @@
-import type { GalleryImage } from '../../data/gallery'
+import { galleryCategories, type GalleryImage } from '../../data/gallery'
 import { ImagePlaceholder } from '../ui/ImagePlaceholder'
 import { Reveal } from '../ui/Reveal'
+
+const categoryLabels = Object.fromEntries(galleryCategories.map((c) => [c.value, c.label]))
 
 type Props = {
   images: GalleryImage[]
@@ -47,7 +49,7 @@ export function GalleryGrid({ images, onOpen }: Props) {
               </p>
             )}
             <span className="pointer-events-none absolute right-2 top-2 rounded-full bg-ink/70 px-2 py-0.5 font-mono text-[9px] uppercase tracking-wide text-paper-dim opacity-0 backdrop-blur transition-opacity duration-300 group-hover:opacity-100">
-              {image.category.replace('-', ' ')}
+              {categoryLabels[image.category] ?? image.category}
             </span>
           </button>
         </Reveal>

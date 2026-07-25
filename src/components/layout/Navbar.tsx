@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { navLinks, site } from '../../data/site'
 import { InstagramIcon } from '../ui/InstagramIcon'
+import { YouTubeIcon } from '../ui/YouTubeIcon'
 import { MobileMenu } from './MobileMenu'
 import logo from '../../assets/logo/voltage-logo.png'
 
@@ -73,6 +74,15 @@ export function Navbar() {
             className="hidden h-10 w-10 items-center justify-center rounded-full border border-white/15 text-paper transition-all duration-300 hover:border-volt hover:text-volt hover:shadow-[0_0_20px_-4px_rgba(255,212,0,0.6)] md:flex"
           >
             <InstagramIcon />
+          </a>
+          <a
+            href={site.youtubeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Voltage on YouTube (opens in a new tab)"
+            className="hidden h-10 w-10 items-center justify-center rounded-full border border-white/15 text-paper transition-all duration-300 hover:border-volt hover:text-volt hover:shadow-[0_0_20px_-4px_rgba(255,212,0,0.6)] md:flex"
+          >
+            <YouTubeIcon />
           </a>
 
           <button

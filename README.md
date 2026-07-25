@@ -35,10 +35,11 @@ npm run lint      # run oxlint
 
 Everything you're likely to edit regularly lives in `src/data/` — plain TypeScript files, no build-system knowledge required.
 
-- **`src/data/site.ts`** — band name, hero tagline, homepage About preview text, Instagram URL/handle, contact email, nav labels.
-- **`src/data/members.ts`** — the six band members (name, role, bio, optional quote, optional social link, photo path). Names/roles are fixed (Violet, Graeden, Aiden, Gavin, Leo, Tyler); edit `bio`/`quote`/`socialUrl` freely.
-- **`src/data/performances.ts`** — every show. Add a new object to the array for a new performance; the Performances page (and homepage preview) automatically sorts entries into **Upcoming** / **Past** by comparing each `date` to today, and shows a polished "no shows booked" empty state if there are zero upcoming shows. Set `ticketUrl: null` to hide the ticket button on a card.
-- **`src/data/gallery.ts`** — every gallery image, with a `category` (for the filter buttons) and `size` (`lg` / `wide` / `tall` / `md`, controlling how much room it gets in the grid).
+- **`src/data/site.ts`** — band name, hero tagline, homepage About preview text, Instagram URL/handle, YouTube URL, contact email, nav labels.
+- **`src/data/members.ts`** — the six band members (name, role, bio, optional quote, optional social link, photo path). Names/roles are fixed (Violet — Lead Singer, Graeden — Drums, Aiden — Bass, Gavin — Guitar, Leo — Guitar, Tyler — Rhythm Guitar); edit `bio`/`quote`/`socialUrl` freely. Leave `bio` as `''` for a member without one yet (Leo, currently) — the card just omits that paragraph rather than showing a placeholder sentence, and the grid still keeps every card in a row the same height.
+- **`src/data/performances.ts`** — every show, upcoming and past. Add a new object to the array; the Performances page (and homepage preview) automatically sorts entries into **Upcoming** / **Past** by comparing each `date` to today, and shows a polished "no shows booked" empty state if there are zero upcoming shows. `time` and `ticketUrl` are optional — omit `time` when a show's specific set time isn't known, and set `ticketUrl: null` to hide the ticket button. Use `\n\n` inside `description` for a paragraph break; leave it as `''` for a show with no write-up.
+- **`src/data/gallery.ts`** — every gallery image, with a `category` and `size` (`lg` / `wide` / `tall` / `md`, controlling how much room it gets in the grid). Category filter labels are defined once at the top of this file (`galleryCategories`) — rename or add one there and the Gallery page's filter buttons update automatically; a category with no photos simply doesn't show a button.
+- **`src/data/slideshow.ts`** — the ordered list of photos in the homepage hero slideshow.
 - **`src/data/songs.ts`** — the two original songs (title, audio paths, cover, description/credits/lyrics/etc. — see "Music & the Originals page" below).
 
 The About page's biography paragraphs and pull-quote are placeholder copy written directly in `src/pages/About.tsx` (search for `EDITABLE` comments) — replace them with your real story.
@@ -61,6 +62,14 @@ Quick summary of folders:
 To add a photo beyond the starter set, add a new entry to the relevant `src/data/*.ts` file pointing at a new `/images/...` path, then drop the file in.
 
 **Uploading new photos over time:** drop them into the top-level `Images/` folder (the intake inbox, separate from `public/`) and ask Claude to check it. It will figure out what each photo is, sort it into the right category, optimize it for web, and wire it into the relevant data file — see `Images/README.md` for the running log of what's already been integrated.
+
+## Homepage hero slideshow
+
+The homepage hero is an auto-advancing photo slideshow (`src/components/ui/HeroSlideshow.tsx`), not a single static image. It crossfades between slides every 6 seconds, and supports previous/next arrows, dot indicators, swipe on touch, and arrow-key navigation. It pauses on hover/focus, and respects `prefers-reduced-motion` (autoplay and the fade animation both turn off; the manual controls still work). Edit the slide list in `src/data/slideshow.ts`.
+
+## Social links
+
+Instagram and YouTube links live in `src/data/site.ts` (`instagramUrl`, `youtubeUrl`) and appear together everywhere the site links out to social: desktop nav, mobile menu, the homepage hero and closing CTA, the footer, and the performances empty state. Both open in a new tab with `rel="noopener noreferrer"` and have accessible labels.
 
 ## Music & the Originals page
 
@@ -94,11 +103,11 @@ To add a third original song: add the masters to `Songs/`, create 128kbps copies
 
 ```
 src/
-  data/               <- edit these for content changes (site, members, performances, gallery, songs)
+  data/               <- edit these for content changes (site, members, performances, gallery, slideshow, songs)
   pages/              <- one file per route
   components/
     layout/           <- Navbar, MobileMenu, Footer, page shell
-    ui/                <- Button, Reveal (scroll animation), ImagePlaceholder, SectionHeading, etc.
+    ui/                <- Button, Reveal (scroll animation), ImagePlaceholder, HeroSlideshow, SectionHeading, etc.
     performances/      <- PerformanceCard, EmptyState
     gallery/           <- GalleryGrid, Lightbox
     about/             <- MemberCard
@@ -116,9 +125,8 @@ Images/                <- inbox for new photo uploads (see Images/README.md)
 
 ## Remaining placeholders to replace
 
-- All photos (hero, band, members, performances, gallery, song covers) — currently branded placeholder cards.
+- Hero/About "supporting" photos, Leo's member photo, and song cover art — still branded placeholder cards (see `public/images/README.md` for exact filenames).
 - About page biography paragraphs and pull-quote (`src/pages/About.tsx`).
-- Member bios, quotes, and social links (`src/data/members.ts`) — names/roles are final.
-- Sample performances (`src/data/performances.ts`) — replace the "Sample Show — Replace Me" entries with real shows, or delete them so the empty state shows.
+- Leo's bio, quote, and social link (`src/data/members.ts`) — everyone else's bio is filled in; names/roles are final for all six.
 - Song descriptions, meaning, credits, release info, lyrics, recording details, performance history, and notes (`src/data/songs.ts`).
-- Contact email and tagline (`src/data/site.ts`).
+- Contact email and tagline are still placeholder values (`src/data/site.ts`).

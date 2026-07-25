@@ -18,7 +18,13 @@ compress/export at the right size.
 
 | Filename | Used on | Suggested size / aspect |
 | --- | --- | --- |
-| `hero-band-photo.jpg` | Homepage hero (right-hand image) | Wide, ~16:9 |
+| `hero-band-photo.jpg` | Homepage hero slideshow — slide 1 | Wide, ~16:9 |
+
+The homepage hero is a slideshow, not a single image — see
+`src/data/slideshow.ts` for the ordered list of slides. It's fine (and
+expected) for later slides to reuse a strong photo that's already in
+`gallery/`; landscape photos crop most predictably in the wide 16:9
+slideshow frame.
 
 ## `band/`
 
@@ -46,7 +52,10 @@ Member names/roles/photos live in `src/data/members.ts`.
 
 | Filename | Used on | Suggested size / aspect |
 | --- | --- | --- |
-| `botb-2026.jpg` | Battle of the Bands 2026 performance card | Portrait poster, ~3:4 |
+| `botb-2026.jpg` | SoFi Battle of the Bands 2026 (upcoming) | Portrait poster, ~3:4 |
+| `napa-botb-2025.jpg` | SoFi Battle of the Bands Napa 2025 (past) | Portrait poster, ~3:4 |
+| `sonoma-botb-2025.jpg` | Music Nomad Battle of the Bands Sonoma 2025 (past) | Portrait poster, ~3:4 |
+| `sonoma-botb-2026.jpg` | Music Nomad Battle of the Bands Sonoma 2026 (past) | Portrait poster, ~3:4 |
 
 Filenames are whatever you set in the `poster` field of each entry in
 `src/data/performances.ts` — add more files there as you add shows.
@@ -55,14 +64,19 @@ a landscape photo will still work fine, just cropped a bit more.
 
 ## `gallery/`
 
-| Filename | Used on | Suggested size / aspect |
-| --- | --- | --- |
-| `gallery-01.jpg` … `gallery-14.jpg` | Gallery page grid + homepage gallery preview | Varies — see below |
+Gallery photos use descriptive filenames grouped by category, e.g.
+`performance-01.jpg`, `band-02.jpg`, `group-04.jpg`,
+`community-fundraising-01.jpg`, `promo-sonoma-announcement.jpg` — see
+`src/data/gallery.ts` for the full current list.
 
-Each gallery entry in `src/data/gallery.ts` has a `size` field
-(`lg`, `wide`, `tall`, `md`) that controls its shape in the grid, and a
-`category` field (`performance`, `behind-the-scenes`, `band`, `promo`)
-used by the filter buttons. Add as many entries as you like.
+Each entry has a `size` field (`lg`, `wide`, `tall`, `md`) that
+controls its shape in the grid, and a `category` field that controls
+which filter button it shows under. The available categories (and
+their filter-button labels) are defined once, in
+`galleryCategories` at the top of `src/data/gallery.ts` — rename a
+category or add a new one there and every place it's used (filter
+buttons, hover badges) updates automatically. Categories with no
+photos yet simply don't show a filter button.
 
 ## `songs/`
 

@@ -18,6 +18,20 @@ export function splitPerformances(performances: Performance[], now = new Date())
   return { upcoming, past }
 }
 
+/**
+ * How many past-show cards the homepage collage should display, based on
+ * how many upcoming shows there are — upcoming shows always get layout
+ * priority, so the busier that side gets, the smaller/fewer the past
+ * cards become. Caller still slices the (already most-recent-first)
+ * `past` array with this number; the full list stays on /performances.
+ */
+export function pastShowsToDisplay(upcomingCount: number): number {
+  if (upcomingCount <= 1) return 5
+  if (upcomingCount === 2) return 4
+  if (upcomingCount === 3) return 3
+  return 2
+}
+
 export function formatDate(iso: string): { weekday: string; month: string; day: string; year: string } {
   const [y, m, d] = iso.split('-').map(Number)
   const date = new Date(y, m - 1, d)

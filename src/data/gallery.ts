@@ -12,28 +12,122 @@
  *   'md'   — standard single tile
  */
 
+export type GalleryCategory = 'performance' | 'behind-the-scenes' | 'band' | 'group' | 'community' | 'promo'
+
+/**
+ * Category filter labels shown on the Gallery page — the single place to
+ * rename a category or add a new one. Adding a new category here doesn't
+ * do anything by itself; give at least one `galleryImages` entry that
+ * `category` value too.
+ */
+export const galleryCategories: { value: GalleryCategory; label: string }[] = [
+  { value: 'performance', label: 'Performances' },
+  { value: 'behind-the-scenes', label: 'Behind the Scenes' },
+  { value: 'band', label: 'Band' },
+  { value: 'group', label: 'Group Photos' },
+  { value: 'community', label: 'Community' },
+  { value: 'promo', label: 'Promotional' },
+]
+
 export type GalleryImage = {
   id: string
   src: string
   alt: string
   caption?: string
-  category: 'performance' | 'behind-the-scenes' | 'band' | 'promo'
+  category: GalleryCategory
   size: 'lg' | 'wide' | 'tall' | 'md'
 }
 
 export const galleryImages: GalleryImage[] = [
-  { id: 'gallery-01', src: '/images/gallery/gallery-01.jpg', alt: 'Placeholder: live performance photo', caption: 'On stage', category: 'performance', size: 'lg' },
-  { id: 'gallery-02', src: '/images/gallery/gallery-02.jpg', alt: 'Placeholder: band promotional photo', caption: 'Promo shoot', category: 'promo', size: 'md' },
-  { id: 'gallery-03', src: '/images/gallery/gallery-03.jpg', alt: 'Placeholder: behind-the-scenes photo', caption: 'Backstage', category: 'behind-the-scenes', size: 'tall' },
-  { id: 'gallery-04', src: '/images/gallery/gallery-04.jpg', alt: 'Placeholder: band member portrait', caption: '', category: 'band', size: 'md' },
-  { id: 'gallery-05', src: '/images/gallery/gallery-05.jpg', alt: 'Placeholder: live performance photo', caption: 'Crowd energy', category: 'performance', size: 'wide' },
-  { id: 'gallery-06', src: '/images/gallery/gallery-06.jpg', alt: 'Placeholder: band promotional photo', caption: '', category: 'promo', size: 'md' },
-  { id: 'gallery-07', src: '/images/gallery/gallery-07.jpg', alt: 'Placeholder: behind-the-scenes photo', caption: 'Soundcheck', category: 'behind-the-scenes', size: 'md' },
-  { id: 'gallery-08', src: '/images/gallery/gallery-08.jpg', alt: 'Placeholder: live performance photo', caption: '', category: 'performance', size: 'md' },
-  { id: 'gallery-09', src: '/images/gallery/gallery-09.jpg', alt: 'Placeholder: band member portrait', caption: '', category: 'band', size: 'tall' },
-  { id: 'gallery-10', src: '/images/gallery/gallery-10.jpg', alt: 'Placeholder: live performance photo', caption: 'Encore', category: 'performance', size: 'md' },
-  { id: 'gallery-11', src: '/images/gallery/gallery-11.jpg', alt: 'Placeholder: behind-the-scenes photo', caption: '', category: 'behind-the-scenes', size: 'wide' },
-  { id: 'gallery-12', src: '/images/gallery/gallery-12.jpg', alt: 'Placeholder: band promotional photo', caption: '', category: 'promo', size: 'md' },
-  { id: 'gallery-13', src: '/images/gallery/gallery-13.jpg', alt: 'Placeholder: live performance photo', caption: '', category: 'performance', size: 'md' },
-  { id: 'gallery-14', src: '/images/gallery/gallery-14.jpg', alt: 'Placeholder: band member portrait', caption: '', category: 'band', size: 'md' },
+  {
+    id: 'band-02',
+    src: '/images/gallery/band-02.jpg',
+    alt: 'Voltage lineup posing together at a Napa School of Music event',
+    category: 'band',
+    size: 'lg',
+  },
+  {
+    id: 'performance-03',
+    src: '/images/gallery/performance-03.jpg',
+    alt: 'Voltage performing together on an outdoor stage',
+    category: 'performance',
+    size: 'wide',
+  },
+  {
+    id: 'performance-06',
+    src: '/images/gallery/performance-06.jpg',
+    alt: 'Lead singer performing energetically on stage',
+    category: 'performance',
+    size: 'tall',
+  },
+  {
+    id: 'band-01',
+    src: '/images/gallery/band-01.jpg',
+    alt: 'Band members sitting together outdoors',
+    category: 'band',
+    size: 'wide',
+  },
+  {
+    id: 'group-04',
+    src: '/images/gallery/group-04.jpg',
+    alt: 'Band members together outdoors at an event',
+    category: 'group',
+    size: 'wide',
+  },
+  {
+    id: 'performance-02',
+    src: '/images/gallery/performance-02.jpg',
+    alt: 'Guitarist performing live on stage',
+    category: 'performance',
+    size: 'tall',
+  },
+  {
+    id: 'band-03',
+    src: '/images/gallery/band-03.jpg',
+    alt: 'Band members relaxing together with award trophies',
+    category: 'band',
+    size: 'md',
+  },
+  {
+    id: 'group-05',
+    src: '/images/gallery/group-05.jpg',
+    alt: 'Band members gathered together at an event',
+    category: 'group',
+    size: 'md',
+  },
+  {
+    id: 'community-fundraising-01',
+    src: '/images/gallery/community-fundraising-01.jpg',
+    alt: 'Band members volunteering with donated food bags',
+    category: 'community',
+    size: 'md',
+  },
+  {
+    id: 'performance-01',
+    src: '/images/gallery/performance-01.jpg',
+    alt: 'Guitarist performing live on stage',
+    category: 'performance',
+    size: 'md',
+  },
+  {
+    id: 'performance-04',
+    src: '/images/gallery/performance-04.jpg',
+    alt: 'Lead singer performing with guitarist on stage',
+    category: 'performance',
+    size: 'md',
+  },
+  {
+    id: 'performance-05',
+    src: '/images/gallery/performance-05.jpg',
+    alt: 'Bassist performing live on stage',
+    category: 'performance',
+    size: 'md',
+  },
+  {
+    id: 'promo-sonoma-announcement',
+    src: '/images/gallery/promo-sonoma-announcement.jpg',
+    alt: 'Promotional graphic announcing the Sonoma Battle of the Bands',
+    category: 'promo',
+    size: 'md',
+  },
 ]

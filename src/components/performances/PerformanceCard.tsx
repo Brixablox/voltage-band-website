@@ -43,13 +43,16 @@ export function PerformanceCard({ performance, status }: Props) {
 
       <div className="flex flex-1 flex-col gap-3 p-6">
         <p className="font-mono text-xs font-semibold uppercase tracking-[0.15em] text-volt">
-          {weekday}, {month} {day} · {year} — {performance.time}
+          {weekday}, {month} {day} · {year}
+          {performance.time && <> — {performance.time}</>}
         </p>
         <h3 className="font-display text-2xl leading-tight tracking-wide sm:text-[1.7rem]">{performance.title}</h3>
         <p className="font-body text-sm font-semibold text-paper/90">
           {performance.venue} <span className="text-paper-dim">— {performance.city}</span>
         </p>
-        <p className="font-body text-sm leading-relaxed text-paper-dim">{performance.description}</p>
+        {performance.description && (
+          <p className="whitespace-pre-line font-body text-sm leading-relaxed text-paper-dim">{performance.description}</p>
+        )}
 
         {!isPast && performance.ticketUrl && (
           <Button href={performance.ticketUrl} external variant="secondary" className="mt-2 w-fit !px-5 !py-2.5 text-sm">

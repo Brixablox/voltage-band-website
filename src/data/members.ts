@@ -2,10 +2,11 @@
  * Band member profiles.
  *
  * Names and roles are fixed — do not change them without checking with
- * the band. `bio`, `quote`, and `socialUrl` are placeholders for you to
- * fill in later; `quote` and `socialUrl` are optional and simply won't
- * render if left empty. `photo` should point at a file you add to
- * `public/images/members/` (see public/images/README.md).
+ * the band. `quote` and `socialUrl` are optional and simply won't render
+ * if left empty. Leave `bio` as `''` to show no biography for a member —
+ * the card still reserves the same amount of space either way. `photo`
+ * should point at a file you add to `public/images/members/` (see
+ * public/images/README.md).
  */
 
 export type Member = {
@@ -23,7 +24,7 @@ export const members: Member[] = [
     id: 'violet',
     name: 'Violet',
     role: 'Lead Singer',
-    bio: 'Biography placeholder — add a short bio for Violet here.',
+    bio: 'I like to sing, write music, draw, and play volleyball. My goal for Voltage is to be professional and sound clean and tight so we can succeed in the future.',
     quote: '',
     socialUrl: '',
     photo: '/images/members/violet.jpg',
@@ -32,7 +33,7 @@ export const members: Member[] = [
     id: 'graeden',
     name: 'Graeden',
     role: 'Drums',
-    bio: 'Biography placeholder — add a short bio for Graeden here.',
+    bio: 'In my free time, I enjoy playing the drums and mountain biking. These hobbies help me stay active, creative, and focused.',
     quote: '',
     socialUrl: '',
     photo: '/images/members/graeden.jpg',
@@ -41,7 +42,7 @@ export const members: Member[] = [
     id: 'aiden',
     name: 'Aiden',
     role: 'Bass',
-    bio: 'Biography placeholder — add a short bio for Aiden here.',
+    bio: 'Aiden is a longtime member whose musical experience brings a steady foundation to every performance. His genuine enjoyment of playing bass comes through each time he takes the stage.',
     quote: '',
     socialUrl: '',
     photo: '/images/members/aiden.jpg',
@@ -50,7 +51,7 @@ export const members: Member[] = [
     id: 'gavin',
     name: 'Gavin',
     role: 'Guitar',
-    bio: 'Biography placeholder — add a short bio for Gavin here.',
+    bio: "Hey, I'm Gavin! I'm a guitarist who brings creative energy to every detail of what we do. My love of music, technology, and building new ideas shapes both my playing and what I contribute behind the scenes.",
     quote: '',
     socialUrl: '',
     photo: '/images/members/gavin.jpg',
@@ -59,7 +60,7 @@ export const members: Member[] = [
     id: 'leo',
     name: 'Leo',
     role: 'Guitar',
-    bio: 'Biography placeholder — add a short bio for Leo here.',
+    bio: 'Leo is a skilled guitarist known for his complex solos and strong technical ability. His precision and creativity bring an exciting edge to every performance.',
     quote: '',
     socialUrl: '',
     photo: '/images/members/leo.jpg',
@@ -68,7 +69,7 @@ export const members: Member[] = [
     id: 'tyler',
     name: 'Tyler',
     role: 'Guitar',
-    bio: 'Biography placeholder — add a short bio for Tyler here.',
+    bio: "What's up, I'm Tyler, and I play rhythm guitar. I'm into basketball, graphic design, and hanging with my friends.",
     quote: '',
     socialUrl: '',
     photo: '/images/members/tyler.jpg',
