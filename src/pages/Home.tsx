@@ -190,7 +190,7 @@ export default function Home() {
               )}
               <div className="flex flex-1 flex-col justify-center">
                 {upcoming.length > 0 ? (
-                  <div className={`grid gap-6 ${upcoming.length > 1 ? 'sm:grid-cols-2' : 'max-w-md lg:ml-auto'}`}>
+                  <div className={`grid gap-6 ${upcoming.length > 1 ? 'sm:grid-cols-2' : ''}`}>
                     {upcoming.map((p, i) => (
                       <Reveal key={p.id} index={i}>
                         <PerformanceCard performance={p} status="upcoming" />
