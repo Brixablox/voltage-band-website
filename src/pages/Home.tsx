@@ -171,11 +171,14 @@ export default function Home() {
           </div>
 
           {/*
-            Desktop: upcoming (left, ~65%, dominant) — electric divider — past (right, ~35%).
+            Desktop: upcoming (left) — electric divider, centered on screen — past (right).
+            Equal-width columns keep the divider at the true horizontal midpoint; upcoming
+            still reads as dominant via its full poster+description card vs. past's smaller
+            tilted thumbnail collage.
             Mobile/tablet: upcoming first, horizontal divider, smaller past preview below.
             `order-*` handles the reflow; `lg:grid-cols-[...]` only kicks in at lg+.
           */}
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.8fr)_auto_minmax(0,1fr)] lg:items-stretch lg:gap-6">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-stretch lg:gap-6">
             {/* UPCOMING SHOWS — dominant, always first/left */}
             <div className="order-1 flex flex-col lg:h-full">
               {upcoming.length > 0 && (
