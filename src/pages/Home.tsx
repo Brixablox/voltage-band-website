@@ -177,20 +177,29 @@ export default function Home() {
           */}
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1.8fr)_auto_minmax(0,1fr)] lg:items-stretch lg:gap-6">
             {/* UPCOMING SHOWS — dominant, always first/left */}
-            <div className="order-1 lg:h-full">
-              {upcoming.length > 0 ? (
-                <div className={`grid gap-6 ${upcoming.length > 1 ? 'sm:grid-cols-2' : 'max-w-md lg:ml-auto'}`}>
-                  {upcoming.map((p, i) => (
-                    <Reveal key={p.id} index={i}>
-                      <PerformanceCard performance={p} status="upcoming" />
-                    </Reveal>
-                  ))}
-                </div>
-              ) : (
-                <Reveal>
-                  <EmptyState />
+            <div className="order-1 flex flex-col lg:h-full">
+              {upcoming.length > 0 && (
+                <Reveal variant="fade" className="mb-5 shrink-0">
+                  <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-paper-dim">
+                    {upcoming.length} Upcoming Show{upcoming.length === 1 ? '' : 's'}
+                  </p>
                 </Reveal>
               )}
+              <div className="flex flex-1 flex-col justify-center">
+                {upcoming.length > 0 ? (
+                  <div className={`grid gap-6 ${upcoming.length > 1 ? 'sm:grid-cols-2' : 'max-w-md lg:ml-auto'}`}>
+                    {upcoming.map((p, i) => (
+                      <Reveal key={p.id} index={i}>
+                        <PerformanceCard performance={p} status="upcoming" />
+                      </Reveal>
+                    ))}
+                  </div>
+                ) : (
+                  <Reveal>
+                    <EmptyState />
+                  </Reveal>
+                )}
+              </div>
             </div>
 
             {/* DIVIDER — vertical on desktop */}
