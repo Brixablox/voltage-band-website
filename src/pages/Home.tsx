@@ -171,24 +171,25 @@ export default function Home() {
           </div>
 
           {/*
-            Desktop: past (left, ~35%) — electric divider — upcoming (right, ~65%, dominant).
+            Desktop: upcoming (left, ~65%, dominant) — electric divider — past (right, ~35%).
             Mobile/tablet: upcoming first, horizontal divider, smaller past preview below.
             `order-*` handles the reflow; `lg:grid-cols-[...]` only kicks in at lg+.
           */}
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1.8fr)] lg:items-stretch lg:gap-6">
-            {/* PAST SHOWS */}
-            <div className="order-3 flex flex-col lg:order-1 lg:h-full">
-              {pastPreview.length > 0 && (
-                <>
-                  <Reveal variant="fade" className="mb-5 shrink-0">
-                    <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-paper-dim">
-                      {past.length} Past Show{past.length === 1 ? '' : 's'}
-                    </p>
-                  </Reveal>
-                  <div className="flex-1">
-                    <PastShowsCollage shows={pastPreview} />
-                  </div>
-                </>
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.8fr)_auto_minmax(0,1fr)] lg:items-stretch lg:gap-6">
+            {/* UPCOMING SHOWS — dominant, always first/left */}
+            <div className="order-1 lg:h-full">
+              {upcoming.length > 0 ? (
+                <div className={`grid gap-6 ${upcoming.length > 1 ? 'sm:grid-cols-2' : 'max-w-md lg:ml-auto'}`}>
+                  {upcoming.map((p, i) => (
+                    <Reveal key={p.id} index={i}>
+                      <PerformanceCard performance={p} status="upcoming" />
+                    </Reveal>
+                  ))}
+                </div>
+              ) : (
+                <Reveal>
+                  <EmptyState />
+                </Reveal>
               )}
             </div>
 
@@ -203,20 +204,19 @@ export default function Home() {
               </div>
             )}
 
-            {/* UPCOMING SHOWS — dominant */}
-            <div className="order-1 lg:order-3">
-              {upcoming.length > 0 ? (
-                <div className={`grid gap-6 ${upcoming.length > 1 ? 'sm:grid-cols-2' : 'max-w-md'}`}>
-                  {upcoming.map((p, i) => (
-                    <Reveal key={p.id} index={i}>
-                      <PerformanceCard performance={p} status="upcoming" />
-                    </Reveal>
-                  ))}
-                </div>
-              ) : (
-                <Reveal>
-                  <EmptyState />
-                </Reveal>
+            {/* PAST SHOWS — always last/right */}
+            <div className="order-3 flex flex-col lg:h-full">
+              {pastPreview.length > 0 && (
+                <>
+                  <Reveal variant="fade" className="mb-5 shrink-0">
+                    <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-paper-dim">
+                      {past.length} Past Show{past.length === 1 ? '' : 's'}
+                    </p>
+                  </Reveal>
+                  <div className="flex-1">
+                    <PastShowsCollage shows={pastPreview} />
+                  </div>
+                </>
               )}
             </div>
           </div>

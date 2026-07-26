@@ -4,29 +4,11 @@ import { getSongById, songsByOrder } from '../data/songs'
 import { usePlayer } from '../player/PlayerContext'
 import { MicIcon, InstrumentalIcon, PauseIcon, PlayIcon } from '../player/icons'
 import { SongCover } from '../components/originals/SongCover'
-import { ImagePlaceholder } from '../components/ui/ImagePlaceholder'
 import { Reveal } from '../components/ui/Reveal'
 import { SectionHeading } from '../components/ui/SectionHeading'
 import { Button } from '../components/ui/Button'
 import { formatDuration } from '../lib/utils'
 import NotFound from './NotFound'
-
-type FieldProps = { label: string; value: string; placeholder?: string; multiline?: boolean }
-
-function DetailField({ label, value, placeholder = 'To be added.', multiline = true }: FieldProps) {
-  return (
-    <Reveal className="flex flex-col gap-2">
-      <h3 className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-volt">{label}</h3>
-      {value ? (
-        <p className={`font-body text-base leading-relaxed text-paper-dim ${multiline ? 'whitespace-pre-line' : ''}`}>{value}</p>
-      ) : (
-        <p className="rounded-xl border border-dashed border-white/15 px-4 py-3 font-body text-sm italic text-paper-dim/60">
-          {placeholder}
-        </p>
-      )}
-    </Reveal>
-  )
-}
 
 export default function SongDetail() {
   const { songId } = useParams<{ songId: string }>()
@@ -118,55 +100,30 @@ export default function SongDetail() {
       </section>
 
       {/* ============================== DETAILS ============================== */}
-      <section className="py-16 sm:py-20">
-        <div className="container-voltage grid gap-16 lg:grid-cols-[1fr_20rem]">
-          <div className="flex flex-col gap-12">
-            <DetailField label="Description" value={song.description} placeholder="Song description coming soon." />
-            <DetailField label="Meaning & Inspiration" value={song.meaning} placeholder="The story behind this song hasn't been added yet." />
-            <DetailField label="Lyrics" value={song.lyrics} placeholder="Lyrics haven't been added yet." />
-            <DetailField label="Recording Details" value={song.recordingDetails} placeholder="Recording details coming soon." />
-            <DetailField label="Performance History" value={song.performanceHistory} placeholder="No performance history added yet." />
-            <DetailField label="Additional Notes" value={song.notes} placeholder="Nothing here yet." />
-          </div>
+      {(song.description || song.credits || song.year) && (
+        <section className="py-16 sm:py-20">
+          <div className={`container-voltage grid gap-16 ${song.credits || song.year ? 'lg:grid-cols-[1fr_20rem]' : ''}`}>
+            {song.description && (
+              <div className="flex flex-col gap-12">
+                <Reveal className="flex flex-col gap-2">
+                  <h3 className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-volt">Description</h3>
+                  <p className="font-body text-base leading-relaxed text-paper-dim">{song.description}</p>
+                </Reveal>
+              </div>
+            )}
 
-          <aside className="flex flex-col gap-10">
-            <div className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-ink-card p-6">
-              <h3 className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-volt">Credits</h3>
-              {song.credits ? (
-                <p className="whitespace-pre-line font-body text-sm leading-relaxed text-paper-dim">{song.credits}</p>
-              ) : (
-                <p className="font-body text-sm italic text-paper-dim/60">Credits coming soon.</p>
-              )}
-            </div>
-
-            <div className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-ink-card p-6">
-              <h3 className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-volt">Release Info</h3>
-              {song.releaseInfo ? (
-                <p className="whitespace-pre-line font-body text-sm leading-relaxed text-paper-dim">{song.releaseInfo}</p>
-              ) : (
-                <p className="font-body text-sm italic text-paper-dim/60">
-                  Release information coming soon.{song.year ? ` (Recorded ${song.year}.)` : ''}
-                </p>
-              )}
-            </div>
-
-            <div className="flex flex-col gap-3">
-              <h3 className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-volt">Related Images</h3>
-              {song.relatedImages.length > 0 ? (
-                <div className="grid grid-cols-2 gap-3">
-                  {song.relatedImages.map((src) => (
-                    <ImagePlaceholder key={src} src={src} alt={`${song.title} related image`} label={song.title} aspectClassName="aspect-square" />
-                  ))}
+            {(song.credits || song.year) && (
+              <aside>
+                <div className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-ink-card p-6">
+                  <h3 className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-volt">Credits</h3>
+                  {song.credits && <p className="whitespace-pre-line font-body text-sm leading-relaxed text-paper-dim">{song.credits}</p>}
+                  {song.year && <p className="font-body text-sm leading-relaxed text-paper-dim">Recorded in {song.year}.</p>}
                 </div>
-              ) : (
-                <p className="rounded-xl border border-dashed border-white/15 px-4 py-3 font-body text-sm italic text-paper-dim/60">
-                  No related images yet.
-                </p>
-              )}
-            </div>
-          </aside>
-        </div>
-      </section>
+              </aside>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* ============================== OTHER SONGS ============================== */}
       {otherSongs.length > 0 && (
