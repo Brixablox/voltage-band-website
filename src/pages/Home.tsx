@@ -19,6 +19,7 @@ import { PerformanceCard } from '../components/performances/PerformanceCard'
 import { EmptyState } from '../components/performances/EmptyState'
 import { ElectricDivider } from '../components/home/ElectricDivider'
 import { PastShowsCollage } from '../components/home/PastShowsCollage'
+import { LivestreamSection } from '../components/home/LivestreamSection'
 import logo from '../assets/logo/voltage-logo.png'
 
 export default function Home() {
@@ -111,6 +112,9 @@ export default function Home() {
           </span>
         </div>
       </section>
+
+      {/* ============================== LIVESTREAM (temporary — see src/data/livestream.ts) ============================== */}
+      <LivestreamSection />
 
       {/* ============================== ABOUT PREVIEW ============================== */}
       <section className="border-t border-white/5 py-24 sm:py-32">
