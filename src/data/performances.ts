@@ -36,8 +36,8 @@ export const performances: Performance[] = [
     venue: 'Palisades Stage',
     city: 'Downtown Napa, CA',
     description:
-      "Voltage is back for their second year competing right here in their hometown of Napa, California! After taking second place last year, they’re ready to rock the stage and take the top spot—with your vote!\n\nCatch Voltage as the first act of the day at 12:00 noon on the Palisades Stage on Second Street. Come out, cheer them on, and help bring home the win!",
-    ticketUrl: 'https://napasofidistrict.com/event/sofi-battle-of-the-bands-2026/',
+      "Voltage returned for their second year competing right here in their hometown of Napa, California! After taking second place the year before, they hit the Palisades Stage as the first act of the day, giving it everything they had in front of a hometown crowd.",
+    ticketUrl: null,
     poster: '/images/performances/botb-2026.jpg',
   },
   {
