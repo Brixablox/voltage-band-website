@@ -13,15 +13,14 @@ export const site = {
 
   // EDITABLE: one or two sentences for the homepage "About" preview card.
   aboutPreview:
-    'Voltage is a band on a mission to bring raw, electric energy to every stage we play. Replace this paragraph with your real story — who you are, how you started, and what your live show feels like.',
+    'Voltage is a high-energy rock band from Napa, California, combining powerful performances, technical musicianship, and a genuine love of music. Built on friendship and dedication, we bring our own style and personality to every stage.',
 
   instagramUrl: 'https://www.instagram.com/napa.voltage/',
   instagramHandle: '@napa.voltage',
 
   youtubeUrl: 'https://www.youtube.com/@napavoltage',
 
-  // EDITABLE: contact email placeholder — swap for a real address when ready.
-  contactEmail: 'booking@voltageband.example',
+  contactEmail: 'napavoltage@gmail.com',
 } as const
 
 export const navLinks = [

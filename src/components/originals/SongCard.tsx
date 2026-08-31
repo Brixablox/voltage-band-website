@@ -60,14 +60,8 @@ export function SongCard({ song, index }: Props) {
             {song.year && <p className="mt-1 font-mono text-xs uppercase tracking-wide text-paper-dim">{song.year}</p>}
           </div>
 
-          {/* EDITABLE placeholder — set shortDescription in src/data/songs.ts */}
-          {song.shortDescription ? (
-            <p className="font-body text-sm leading-relaxed text-paper-dim">{song.shortDescription}</p>
-          ) : (
-            <p className="font-body text-sm italic leading-relaxed text-paper-dim/60">
-              Description coming soon.
-            </p>
-          )}
+          {/* EDITABLE — set description in src/data/songs.ts */}
+          {song.description && <p className="font-body text-sm leading-relaxed text-paper-dim">{song.description}</p>}
 
           <div className="flex flex-wrap gap-2.5">
             <button
