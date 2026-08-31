@@ -52,6 +52,7 @@ Member names/roles/photos live in `src/data/members.ts`.
 
 | Filename | Used on | Suggested size / aspect |
 | --- | --- | --- |
+| `punked-out-pretty-2026.jpg` | Punked Out Pretty (upcoming) | Portrait poster, ~3:4 |
 | `botb-2026.jpg` | SoFi Battle of the Bands 2026 (upcoming) | Portrait poster, ~3:4 |
 | `napa-botb-2025.jpg` | SoFi Battle of the Bands Napa 2025 (past) | Portrait poster, ~3:4 |
 | `sonoma-botb-2025.jpg` | Music Nomad Battle of the Bands Sonoma 2025 (past) | Portrait poster, ~3:4 |
