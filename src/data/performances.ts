@@ -36,7 +36,7 @@ export const performances: Performance[] = [
     venue: 'The Phoenix Theater',
     city: 'Petaluma, CA',
     description:
-      "All ages show at the Phoenix Theater in Petaluma! Punked Out Pretty invited us out for a night of live music alongside Polaris, Red 40, and Sacramental — with Voltage rounding out the bill.\n\nDoors open at 6:00 PM, music runs 7-10 PM. Tickets are $12 at the door.",
+      "All ages show at the Phoenix Theater in Petaluma! Punked Out Pretty invited us out for a night of live music with Polaris, Red 40, Sacramental, and Voltage on the bill.\n\nDoors open at 6:00 PM, music runs 7-10 PM. Tickets are $12 at the door.",
     ticketUrl: null,
     poster: '/images/performances/punked-out-pretty-2026.jpg',
   },
