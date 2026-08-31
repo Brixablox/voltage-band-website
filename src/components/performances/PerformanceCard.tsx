@@ -14,7 +14,8 @@ export function PerformanceCard({ performance, status }: Props) {
 
   return (
     <article
-      className={`group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-ink-card transition-all duration-400 ${
+      id={performance.id}
+      className={`group relative flex scroll-mt-[120px] flex-col overflow-hidden rounded-2xl border border-white/10 bg-ink-card transition-all duration-400 ${
         isPast ? 'opacity-75 hover:opacity-100' : 'hover:-translate-y-1.5 hover:border-volt/40 hover:shadow-[0_20px_50px_-20px_rgba(255,212,0,0.35)]'
       }`}
     >

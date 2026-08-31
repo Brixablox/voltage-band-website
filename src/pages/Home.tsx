@@ -38,7 +38,7 @@ export default function Home() {
   return (
     <>
       {/* ============================== HERO ============================== */}
-      <section ref={heroRef} className="bg-stage-glow relative flex min-h-[92svh] items-center overflow-hidden pt-24 pb-16">
+      <section ref={heroRef} className="bg-stage-glow relative flex min-h-[92svh] items-center overflow-hidden pt-28 pb-16">
         <motion.div
           style={{ y: parallaxY }}
           className="pointer-events-none absolute -top-24 -right-24 h-[28rem] w-[28rem] rounded-full opacity-30 blur-3xl"

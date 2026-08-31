@@ -185,6 +185,23 @@ img {
   }
 }
 
+/* News-ticker links sit on the bright volt background — the default
+   focus ring (volt-on-volt) would be invisible, so give them their own. */
+.ticker-link {
+  text-decoration-line: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+  text-decoration-color: rgba(10, 10, 10, 0.35);
+  transition: text-decoration-color 0.2s var(--ease-voltage);
+}
+.ticker-link:hover,
+.ticker-link:focus-visible {
+  text-decoration-color: var(--color-ink);
+}
+.ticker-link:focus-visible {
+  outline-color: var(--color-ink);
+}
+
 /* Custom scrollbar accent (progressive enhancement, non-essential) */
 ::-webkit-scrollbar {
   width: 12px;

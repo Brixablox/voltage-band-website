@@ -4,6 +4,7 @@ import { navLinks, site } from '../../data/site'
 import { InstagramIcon } from '../ui/InstagramIcon'
 import { YouTubeIcon } from '../ui/YouTubeIcon'
 import { MobileMenu } from './MobileMenu'
+import { NewsTicker } from './NewsTicker'
 import logo from '../../assets/logo/voltage-logo.png'
 
 /** Fixed top navigation. Solidifies its background on scroll for contrast over hero content. */
@@ -33,6 +34,7 @@ export function Navbar() {
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>
+      <NewsTicker />
       <div className="container-voltage flex h-16 items-center justify-between">
         <NavLink to="/" className="flex items-center gap-2" aria-label="Voltage — home">
           <img src={logo} alt="Voltage" className="h-8 w-auto sm:h-9" />

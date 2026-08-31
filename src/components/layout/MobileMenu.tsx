@@ -25,7 +25,7 @@ export function MobileMenu({ open, onClose }: Props) {
           animate={{ opacity: 1, y: 0 }}
           exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -16 }}
           transition={{ duration: shouldReduceMotion ? 0.15 : 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="bg-stage-glow fixed inset-x-0 top-[64px] z-40 max-h-[calc(100svh-64px)] overflow-y-auto border-t border-white/10 bg-ink/98 px-6 pb-10 pt-6 backdrop-blur-lg md:hidden"
+          className="bg-stage-glow fixed inset-x-0 top-[100px] z-40 max-h-[calc(100svh-100px)] overflow-y-auto border-t border-white/10 bg-ink/98 px-6 pb-10 pt-6 backdrop-blur-lg md:hidden"
         >
           <nav aria-label="Primary" className="flex flex-col gap-1">
             {navLinks.map((link, i) => (
