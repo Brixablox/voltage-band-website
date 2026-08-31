@@ -6,11 +6,18 @@ import { site } from '../../data/site'
  * News-ticker style announcement bar. Lives inside Navbar's fixed header
  * (see Navbar.tsx) so it scrolls the marquee track continuously.
  *
- * The track renders the sequence twice back-to-back — `.marquee-track` /
- * `marquee-scroll` (index.css) slides it exactly one sequence-width to
- * the left, on repeat, so it loops seamlessly. The second copy is
- * decorative only (plain text, `aria-hidden`, no links) so it can't
- * leave a hidden-but-tabbable duplicate in the keyboard order.
+ * The animated track renders the sequence twice back-to-back —
+ * `.marquee-track` / `marquee-scroll` (index.css) slides it exactly one
+ * sequence-width to the left, on repeat, so it loops seamlessly. Both
+ * copies are real links (not one real + one dummy) so whichever copy is
+ * on screen at any moment is clickable — with only one copy interactive,
+ * the mouse would spend most of the loop hovering the inert twin.
+ *
+ * That animated track is entirely `aria-hidden` with every link pulled
+ * out of the tab order (`tabIndex={-1}`): duplicated + constantly moving
+ * text is unusable for keyboard/screen-reader users regardless. A
+ * separate static, non-animated list right after it carries the same
+ * items for them instead.
  *
  * EDITABLE: add, remove, or edit entries in `items` below. `to` jumps to
  * an in-page element by id (e.g. a specific show card); `href` links out.
@@ -26,18 +33,19 @@ const items: { key: string; text: string; to?: string; href?: string }[] = [
   { key: 'youtube', text: 'Subscribe to us on YouTube', href: site.youtubeUrl },
 ]
 
-function renderContent(item: (typeof items)[number], interactive: boolean): ReactNode {
-  if (!interactive) return <span>{item.text}</span>
+/** `inert` = rendered inside the aria-hidden animated track: still fully clickable, just tabIndex-less. */
+function renderItem(item: (typeof items)[number], inert: boolean): ReactNode {
+  const tabIndex = inert ? -1 : undefined
   if (item.to) {
     return (
-      <Link to={item.to} className="ticker-link">
+      <Link to={item.to} tabIndex={tabIndex} className="ticker-link">
         {item.text}
       </Link>
     )
   }
   if (item.href) {
     return (
-      <a href={item.href} target="_blank" rel="noopener noreferrer" className="ticker-link">
+      <a href={item.href} target="_blank" rel="noopener noreferrer" tabIndex={tabIndex} className="ticker-link">
         {item.text}
       </a>
     )
@@ -45,12 +53,12 @@ function renderContent(item: (typeof items)[number], interactive: boolean): Reac
   return <span>{item.text}</span>
 }
 
-function Sequence({ decorative }: { decorative?: boolean }) {
+function Sequence() {
   return (
-    <div className="flex shrink-0 items-center" aria-hidden={decorative || undefined}>
+    <div className="flex shrink-0 items-center">
       {items.map((item) => (
         <span key={item.key} className="flex shrink-0 items-center gap-8 pr-8">
-          {renderContent(item, !decorative)}
+          {renderItem(item, true)}
           <span className="text-ink/30" aria-hidden="true">
             ●
           </span>
@@ -69,10 +77,19 @@ export function NewsTicker() {
         News
       </span>
       <div className="relative flex flex-1 overflow-hidden">
-        <div className="marquee-track flex w-max items-center pl-8 font-mono text-[11px] font-bold uppercase tracking-wide sm:text-xs">
+        <div
+          className="marquee-track flex w-max items-center pl-8 font-mono text-[11px] font-bold uppercase tracking-wide sm:text-xs"
+          aria-hidden="true"
+        >
           <Sequence />
-          <Sequence decorative />
+          <Sequence />
         </div>
+        {/* Static, accessible equivalent for keyboard/screen-reader users — the animated track above is aria-hidden. */}
+        <ul className="sr-only">
+          {items.map((item) => (
+            <li key={item.key}>{renderItem(item, false)}</li>
+          ))}
+        </ul>
       </div>
     </div>
   )
