@@ -30,13 +30,13 @@ export type Performance = {
 export const performances: Performance[] = [
   {
     id: 'punked-out-pretty-2026',
-    title: 'Punked Out Pretty',
+    title: 'Night at the Phoenix Stage',
     date: '2026-09-12',
     time: '7:00 PM – 10:00 PM (Doors 6:00 PM)',
     venue: 'The Phoenix Theater',
     city: 'Petaluma, CA',
     description:
-      "All ages show at the Phoenix Theater in Petaluma! Voltage joins Polaris, Red 40, and Sacramental for a night of live music.\n\nDoors open at 6:00 PM, music runs 7-10 PM. Tickets are $12 at the door.",
+      "All ages show at the Phoenix Theater in Petaluma! Punked Out Pretty invited us out for a night of live music alongside Polaris, Red 40, and Sacramental — with Voltage rounding out the bill.\n\nDoors open at 6:00 PM, music runs 7-10 PM. Tickets are $12 at the door.",
     ticketUrl: null,
     poster: '/images/performances/punked-out-pretty-2026.jpg',
   },
