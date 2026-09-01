@@ -56,38 +56,11 @@ export default function About() {
         </div>
       </section>
 
-      {/* ============================== SUPPORTING IMAGES ============================== */}
-      <section className="border-t border-white/5 py-16 sm:py-20">
-        <div className="container-voltage flex flex-col gap-12">
-          <SectionHeading eyebrow="More" title="Behind the Music" />
-          <div className="grid gap-4 sm:grid-cols-3">
-            <Reveal index={0} variant="scale">
-              <ImagePlaceholder
-                src="/images/band/supporting-1.jpg"
-                alt="Placeholder: supporting band photo"
-                label="Supporting Photo 1"
-                aspectClassName="aspect-[4/5]"
-              />
-            </Reveal>
-            <Reveal index={1} variant="scale">
-              <ImagePlaceholder
-                src="/images/band/supporting-2.jpg"
-                alt="Placeholder: supporting band photo"
-                label="Supporting Photo 2"
-                aspectClassName="aspect-[4/5]"
-              />
-            </Reveal>
-            <Reveal index={2} variant="scale">
-              <ImagePlaceholder
-                src="/images/band/supporting-3.jpg"
-                alt="Placeholder: supporting band photo"
-                label="Supporting Photo 3"
-                aspectClassName="aspect-[4/5]"
-              />
-            </Reveal>
-          </div>
-        </div>
-      </section>
+      {/*
+        EDITABLE: The "Behind the Music" supporting-photos section has
+        been removed for now. To bring it back, restore it from git
+        history (see the commit that removed it).
+      */}
     </>
   )
 }
