@@ -19,9 +19,6 @@ export const site = {
   instagramHandle: '@napa.voltage',
 
   youtubeUrl: 'https://www.youtube.com/@napavoltage',
-
-  // EDITABLE: contact email placeholder — swap for a real address when ready.
-  contactEmail: 'booking@voltageband.example',
 } as const
 
 export const navLinks = [

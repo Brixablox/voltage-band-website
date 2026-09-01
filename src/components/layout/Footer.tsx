@@ -54,9 +54,14 @@ export function Footer() {
 
         <div className="flex flex-col gap-3">
           <h3 className="mb-1 font-body text-xs font-bold uppercase tracking-[0.2em] text-paper-dim">Contact</h3>
-          {/* EDITABLE: replace with a real booking/contact email */}
-          <a href={`mailto:${site.contactEmail}`} className="w-fit break-all font-body text-sm text-paper/85 transition-colors hover:text-volt">
-            {site.contactEmail}
+          <a
+            href={site.instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Contact Voltage on Instagram (opens in a new tab): ${site.instagramHandle}`}
+            className="w-fit font-body text-sm text-paper/85 transition-colors hover:text-volt"
+          >
+            Reach us on Instagram — {site.instagramHandle}
           </a>
         </div>
       </div>
