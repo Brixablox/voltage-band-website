@@ -2,7 +2,6 @@ import { members } from '../data/members'
 import { ImagePlaceholder } from '../components/ui/ImagePlaceholder'
 import { Reveal } from '../components/ui/Reveal'
 import { SectionHeading } from '../components/ui/SectionHeading'
-import { VoltageDivider } from '../components/ui/VoltageDivider'
 import { MemberCard } from '../components/about/MemberCard'
 
 export default function About() {
@@ -18,53 +17,18 @@ export default function About() {
             </span>
           </Reveal>
           <Reveal trigger="mount" index={1}>
-            <h1 className="text-gradient-volt mt-4 text-[clamp(3rem,9vw,6rem)]">Our Story</h1>
+            <h1 className="text-gradient-volt mt-4 text-[clamp(3rem,9vw,6rem)]">The Band</h1>
           </Reveal>
         </div>
       </section>
 
-      {/* ============================== STORY ============================== */}
-      <section className="py-4 sm:py-8">
-        <div className="container-voltage grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
-          <Reveal className="flex flex-col gap-5">
-            {/*
-              EDITABLE: This is placeholder biography copy. Replace the
-              paragraphs below with your band's real story — how you
-              formed, your sound, and what drives your live shows.
-            */}
-            <p className="font-body text-base leading-relaxed text-paper-dim sm:text-lg">
-              [Placeholder] This is where the story of {"Voltage"} begins. Write about how the band came
-              together — the first rehearsal, the chemistry that clicked, and the sound you set out to
-              create. Replace this paragraph with your own words.
-            </p>
-            <p className="font-body text-base leading-relaxed text-paper-dim sm:text-lg">
-              [Placeholder] Talk about your influences, your live show, and what makes Voltage different
-              from any other band on the bill. This is your space to set the tone for who you are.
-            </p>
-            <p className="font-body text-base leading-relaxed text-paper-dim sm:text-lg">
-              [Placeholder] Close with where the band is headed next — upcoming releases, tour plans, or
-              the mission driving the music forward.
-            </p>
-          </Reveal>
-
-          <Reveal variant="scale">
-            <blockquote className="relative flex h-full flex-col justify-center gap-4 rounded-2xl border border-white/10 bg-ink-card p-8">
-              <span className="font-display text-6xl leading-none text-volt/40" aria-hidden="true">
-                &ldquo;
-              </span>
-              {/* EDITABLE: pull-quote placeholder */}
-              <p className="font-display text-2xl leading-snug tracking-wide sm:text-3xl">
-                Replace this with a short, memorable quote from the band.
-              </p>
-              <cite className="font-body text-sm not-italic text-paper-dim">— Member Name, Voltage</cite>
-            </blockquote>
-          </Reveal>
-        </div>
-      </section>
-
-      <div className="container-voltage py-4">
-        <VoltageDivider />
-      </div>
+      {/*
+        EDITABLE: The "Our Story" section (band bio + pull-quote) has been
+        removed for now so the page goes straight from the header into the
+        group photo and lineup below. To bring it back, restore it from
+        git history (see the commit that removed it) and re-add the
+        VoltageDivider import/usage.
+      */}
 
       {/* ============================== GROUP PHOTO ============================== */}
       <section className="py-16 sm:py-20">
