@@ -18,7 +18,7 @@ export function EmptyState() {
           />
         </svg>
       </div>
-      <h3 className="font-display text-2xl sm:text-3xl">No Shows Booked — Yet</h3>
+      <h3 className="font-display text-2xl sm:text-3xl">Coming Soon</h3>
       <p className="max-w-md font-body text-sm text-paper-dim sm:text-base">
         Voltage is off stage for the moment, but new dates are always in the works. Follow along on
         Instagram and YouTube to be first to know when tickets drop.
