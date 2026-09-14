@@ -25,8 +25,8 @@ import { site } from '../../data/site'
 const items: { key: string; text: string; to?: string; href?: string }[] = [
   {
     key: 'show',
-    text: 'Catch us live at The Phoenix Theater — Saturday, September 12th!',
-    to: '/performances#punked-out-pretty-2026',
+    text: 'Watch our Phoenix Theater gig!',
+    to: '/#phoenix-gig',
   },
   { key: 'welcome', text: 'Welcome to Napa Voltage!' },
   { key: 'instagram', text: `Find us on Instagram — ${site.instagramHandle}`, href: site.instagramUrl },
