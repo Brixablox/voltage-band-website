@@ -112,6 +112,41 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ============================== PHOENIX THEATER GIG VIDEO ============================== */}
+      <section id="phoenix-gig" className="scroll-mt-[120px] border-t border-white/5 py-24 sm:py-32">
+        <div className="container-voltage flex flex-col items-center gap-10">
+          <SectionHeading eyebrow="Show Recap" title="Our Phoenix Theater Gig" align="center" />
+
+          <Reveal variant="scale" className="w-full max-w-4xl">
+            <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
+              <iframe
+                className="absolute inset-0 h-full w-full"
+                src="https://www.youtube-nocookie.com/embed/acwyS63anhM"
+                title="Voltage performing live at The Phoenix Theater"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+          </Reveal>
+
+          <Reveal index={1} className="max-w-2xl text-center">
+            <p className="font-body text-sm leading-relaxed text-paper-dim sm:text-base">
+              Thank you to the people at Phoenix Theater for setting up an amazing experience and to the band{' '}
+              <a
+                href="https://www.instagram.com/punkedoutpretty/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-spark underline decoration-spark/40 underline-offset-2 transition-colors hover:decoration-spark"
+              >
+                Punked Out Pretty
+              </a>{' '}
+              for inviting us to perform.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ============================== ABOUT PREVIEW ============================== */}
       <section className="border-t border-white/5 py-24 sm:py-32">
         <div className="container-voltage grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
@@ -151,41 +186,6 @@ export default function Home() {
               </Button>
             </Reveal>
           </div>
-        </div>
-      </section>
-
-      {/* ============================== PHOENIX THEATER GIG VIDEO ============================== */}
-      <section id="phoenix-gig" className="scroll-mt-[120px] border-t border-white/5 py-24 sm:py-32">
-        <div className="container-voltage flex flex-col items-center gap-10">
-          <SectionHeading eyebrow="Show Recap" title="Our Phoenix Theater Gig" align="center" />
-
-          <Reveal variant="scale" className="w-full max-w-4xl">
-            <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
-              <iframe
-                className="absolute inset-0 h-full w-full"
-                src="https://www.youtube-nocookie.com/embed/acwyS63anhM"
-                title="Voltage performing live at The Phoenix Theater"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            </div>
-          </Reveal>
-
-          <Reveal index={1} className="max-w-2xl text-center">
-            <p className="font-body text-sm leading-relaxed text-paper-dim sm:text-base">
-              Thank you to the people at Phoenix Theater for setting up an amazing experience and to the band{' '}
-              <a
-                href="https://www.instagram.com/punkedoutpretty/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold text-spark underline decoration-spark/40 underline-offset-2 transition-colors hover:decoration-spark"
-              >
-                Punked Out Pretty
-              </a>{' '}
-              for inviting us to perform.
-            </p>
-          </Reveal>
         </div>
       </section>
 
