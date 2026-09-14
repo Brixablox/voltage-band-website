@@ -29,69 +29,75 @@
 
 /* ==========================================================================
    Base
+   Wrapped in Tailwind's `base` layer (not left unlayered) so these element
+   resets stay lower-priority than utility classes in the cascade — e.g. a
+   plain `<a>` picking up `color: inherit` here, but a `text-*` utility on
+   a specific link still winning over it, same as any other element default.
    ========================================================================== */
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  color-scheme: dark;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+@layer base {
+  * {
+    box-sizing: border-box;
   }
-}
 
-body {
-  margin: 0;
-  background: var(--color-ink);
-  color: var(--color-paper);
-  font-family: var(--font-body);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  overflow-x: hidden;
-}
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
 
-#root {
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-}
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
 
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--font-display);
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  line-height: 0.95;
-}
+  body {
+    margin: 0;
+    background: var(--color-ink);
+    color: var(--color-paper);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
 
-::selection {
-  background: var(--color-volt);
-  color: var(--color-ink);
-}
+  #root {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+  }
 
-a {
-  color: inherit;
-}
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    line-height: 0.95;
+  }
 
-img {
-  max-width: 100%;
-  display: block;
-}
+  ::selection {
+    background: var(--color-volt);
+    color: var(--color-ink);
+  }
 
-/* Visible, brand-colored focus ring for keyboard navigation everywhere */
-:focus-visible {
-  outline: 3px solid var(--color-volt);
-  outline-offset: 3px;
-  border-radius: 2px;
+  a {
+    color: inherit;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  /* Visible, brand-colored focus ring for keyboard navigation everywhere */
+  :focus-visible {
+    outline: 3px solid var(--color-volt);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
 }
 
 /* Skip link: hidden until focused, first tab stop */
