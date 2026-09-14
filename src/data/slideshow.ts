@@ -18,6 +18,11 @@ export type SlideshowImage = {
 
 export const heroSlides: SlideshowImage[] = [
   {
+    id: 'hero-group-front-page',
+    src: '/images/hero/group-front-page.jpg',
+    alt: 'Voltage band members posing together against a graffiti-covered wall',
+  },
+  {
     id: 'hero-live',
     src: '/images/hero/hero-band-photo.jpg',
     alt: 'Voltage performing live on stage',
